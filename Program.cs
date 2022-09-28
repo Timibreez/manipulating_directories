@@ -67,3 +67,4 @@ string checkVariable(){
 var checker = checkVariable();
 Console.WriteLine(checker);
 
+File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir", "greetings.txt"), "Hello, World!");
