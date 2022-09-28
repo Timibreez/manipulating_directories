@@ -18,7 +18,7 @@ IEnumerable<string> FindFiles(string folderName){
 
     foreach(var file in foundFiles){
         var extension = Path.GetExtension(file);
-        
+
         if (extension == ".json"){
             salesFiles.Add(file);
         }
@@ -46,3 +46,6 @@ Console.WriteLine(Path.GetExtension("sales.json"));
 string filename = $"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales{Path.DirectorySeparatorChar}sales.json";
 FileInfo info = new FileInfo(filename);
 Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}");
+
+// Creating a new Directory
+Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir"));
