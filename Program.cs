@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-var requiredFiles = FindFiles("stores");
+var currentDirectory = Directory.GetCurrentDirectory();
+var storesDirectory = Path.Combine(currentDirectory, "stores");
+
+var requiredFiles = FindFiles(storesDirectory);
 
 foreach(var file in requiredFiles){
     Console.WriteLine(file);
