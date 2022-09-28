@@ -21,3 +21,12 @@ IEnumerable<string> FindFiles(string folderName){
 
     return salesFiles;
 }
+
+Console.WriteLine(Directory.GetCurrentDirectory());
+
+string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+Console.WriteLine(docPath);
+
+Console.WriteLine($"stores{Path.DirectorySeparatorChar}201");
+
+Console.WriteLine(Path.Combine("stores", "203"));
