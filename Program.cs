@@ -36,3 +36,8 @@ Console.WriteLine(Path.Combine("stores", "203"));
 
 // Determine file extension
 Console.WriteLine(Path.GetExtension("sales.json"));
+
+// Getting detailed information about a file or directory
+string filename = $"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales{Path.DirectorySeparatorChar}sales.json";
+FileInfo info = new FileInfo(filename);
+Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}");
