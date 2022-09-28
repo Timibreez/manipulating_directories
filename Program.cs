@@ -48,4 +48,22 @@ FileInfo info = new FileInfo(filename);
 Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}");
 
 // Creating a new Directory
-Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir"));
+string checkVariable(){
+    string pat = Path.Combine("stores", "201", "timsNewDir");
+
+    string message;
+
+    if (Directory.Exists(pat) == true){
+        message = "path already exist";
+
+    }
+    else {
+        Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir"));
+        message = "Successfully created directory";
+    }
+    return message;
+}
+
+var checker = checkVariable();
+Console.WriteLine(checker);
+
