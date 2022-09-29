@@ -83,6 +83,6 @@ File.WriteAllText($"salesTotalDir{Path.DirectorySeparatorChar}totals.txt", data.
 Console.WriteLine(salesData.Total);
 
 class SalesTotal {
-    public double Total { get; set; } = default!;
+    public double Total { get; set; }
 }
 
