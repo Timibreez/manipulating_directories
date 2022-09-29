@@ -71,4 +71,6 @@ string checkVariable(){
 var checker = checkVariable();
 Console.WriteLine(checker);
 
-File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir", "greetings.txt"), "Hello, World!");
+// File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir", "greetings.txt"), "Hello, World!");
+Console.WriteLine(File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}timsNewDir{Path.DirectorySeparatorChar}greetings.txt"));
+Console.WriteLine(File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales.json"));
