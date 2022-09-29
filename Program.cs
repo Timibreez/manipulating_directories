@@ -1,13 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Newtonsoft.Json;
 
 var currentDirectory = Directory.GetCurrentDirectory();
 var storesDirectory = Path.Combine(currentDirectory, "stores");
 
 var requiredFiles = FindFiles(storesDirectory);
-var salesTotalDirectory = Path.Combine(currentDirectory, "salesTotalDir");
+var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
 Directory.CreateDirectory("salesTotalDir");
 
-File.WriteAllText(Path.Combine(salesTotalDirectory, "totals.txt"), string.Empty);
+File.WriteAllText(Path.Combine(salesTotalDir, "totals.txt"), string.Empty);
 
 foreach(var file in requiredFiles){
     Console.WriteLine(file);
@@ -72,5 +73,16 @@ var checker = checkVariable();
 Console.WriteLine(checker);
 
 // File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "stores", "201", "timsNewDir", "greetings.txt"), "Hello, World!");
-Console.WriteLine(File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}timsNewDir{Path.DirectorySeparatorChar}greetings.txt"));
-Console.WriteLine(File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales.json"));
+// Console.WriteLine(File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}timsNewDir{Path.DirectorySeparatorChar}greetings.txt"));
+var salesJson = File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.DirectorySeparatorChar}sales.json");
+var salesData = JsonConvert.DeserializeObject<SalesTotal>(salesJson);
+
+var data = JsonConvert.DeserializeObject<SalesTotal>(salesJson);
+File.WriteAllText($"salesTotalDir{Path.DirectorySeparatorChar}totals.txt", data.Total.ToString());
+
+Console.WriteLine(salesData.Total);
+
+class SalesTotal {
+    public double Total { get; set; } = default!;
+}
+
