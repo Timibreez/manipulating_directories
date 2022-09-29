@@ -78,7 +78,7 @@ var salesJson = File.ReadAllText($"stores{Path.DirectorySeparatorChar}201{Path.D
 var salesData = JsonConvert.DeserializeObject<SalesTotal>(salesJson);
 
 var data = JsonConvert.DeserializeObject<SalesTotal>(salesJson);
-File.WriteAllText($"salesTotalDir{Path.DirectorySeparatorChar}totals.txt", data.Total.ToString());
+File.AppendAllText($"salesTotalDir{Path.DirectorySeparatorChar}totals.txt", $"{data.Total}{Environment.NewLine}");
 
 Console.WriteLine(salesData.Total);
 
