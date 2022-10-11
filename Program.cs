@@ -8,7 +8,11 @@ var requiredFiles = FindFiles(storesDirectory);
 var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
 Directory.CreateDirectory("salesTotalDir");
 
-File.WriteAllText(Path.Combine(salesTotalDir, "totals.txt"), string.Empty);
+var salesFiles = FindFiles(storesDirectory);
+
+var salesTotal = CalculateSalesTotal(salesFiles);
+
+File.AppendAllText(Path.Combine(salesTotalDir, "totals.txt"), $"{salesTotal}{Environment.NewLine}");
 
 foreach(var file in requiredFiles){
     Console.WriteLine(file);
@@ -31,6 +35,21 @@ IEnumerable<string> FindFiles(string folderName){
 
     return salesFiles;
 }
+
+double CalculateSalesTotal(IEnumerable<string> salesFiles){
+    double SalesTotal = 0;
+
+    foreach(var file in  salesFiles){
+        string salesJson = File.ReadAllText(file);
+
+        SalesData? data = JsonConvert.DeserializeObject<SalesData?>(salesJson);
+
+        SalesTotal += data?.Total ?? 0;
+    }
+
+    return SalesTotal;
+}
+
 // Get current working directory
 Console.WriteLine(Directory.GetCurrentDirectory());
 
@@ -86,3 +105,4 @@ class SalesTotal {
     public double Total { get; set; }
 }
 
+record SalesData (double Total);
